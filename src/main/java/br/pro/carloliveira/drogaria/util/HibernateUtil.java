@@ -11,17 +11,18 @@ public class HibernateUtil {
 	public static SessionFactory getFabricaDeSessoes() {
 		return fabricaDeSessoes;
 	}
-	
+
 	private static SessionFactory criarFabricaDeSessoes() {
-		try{
+		try {
 			Configuration configuracao = new Configuration().configure();
-			
-			ServiceRegistry registro = new StandardServiceRegistryBuilder().applySettings(configuracao.getProperties()).build();
-			
+
+			ServiceRegistry registro = new StandardServiceRegistryBuilder().applySettings(configuracao.getProperties())
+					.build();
+
 			SessionFactory fabrica = configuracao.buildSessionFactory(registro);
-			
+
 			return fabrica;
-		}catch(Throwable ex) {
+		} catch (Throwable ex) {
 			System.err.println("A fábrica de sessão não pode ser criada." + ex);
 			throw new ExceptionInInitializerError(ex);
 		}
